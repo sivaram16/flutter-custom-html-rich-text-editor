@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<title>Sample</title>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
+    <style>
+        .hide {
+            display: none im !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="sample">This is the text from HTML</div>
+
+    <script>
+        parent.connect_content_to_flutter && parent.connect_content_to_flutter(window)
+        function getValue() {
+            var justHtml = document.getElementById('sample').innerHTML;
+            if (justHtml != null) {
+                return justHtml;
+            }
+        }
+        window.addEventListener("message", (message) => {
+            if (message.data.id === "sample") {
+                document.getElementById('sample').innerHTML = message.data.msg;
+            }
+        })
+    </script>
+</body>
+
+</html>
